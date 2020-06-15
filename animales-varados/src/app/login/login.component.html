@@ -1,19 +1,27 @@
-<div>
-
-    <div>
-        Correo electrónico:
-        <input id="mail" placeholder="example@example.com">
+<section id="login" class="mb-5 mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-4 mx-auto">
+        <div class="card_login">
+          <div class="card">
+            <div class="card-body text-center">
+              <form [formGroup]="loginForm" method="post" (ngSubmit)="onSubmit(loginForm.value)">
+                <div class="form-group">
+                  <input type="email" id="email" formControlName="email" name="email" class="form-control" placeholder="Email"  required>
+                </div>
+                <div class="form-group">
+                  <input type="password" id="password" formControlName="password" name="password" class="form-control" placeholder="Password"
+                    required>
+                </div>
+                <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
+                <div class="form-group">
+                  <a routerLink="/user/register" class="form-control login-user">Soporte técnico ?</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div>
-        Password:
-        <input id="password" type="password">
-    </div>
-
-    <div>
-        <button type="button" onclick="authenticte()">Login</button>
-    </div>
-
-
-
-</div>
+  </div>
+</section>
