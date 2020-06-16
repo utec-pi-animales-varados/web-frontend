@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { AuthenticateService } from '../services/authenticate.service';
 
 
@@ -10,13 +10,15 @@ import { AuthenticateService } from '../services/authenticate.service';
 })
 export class LoginComponent implements OnInit {
   loginForm;
+  authenticated = false;
+
   constructor(
     private authenticateService: AuthenticateService,
     private formBuilder: FormBuilder
     ) {
       this.loginForm = this.formBuilder.group({
-        email: '',
-        password: ''
+        email: ['',Validators.required],
+        password: ['',Validators.required]
       });
       
     }
@@ -24,10 +26,15 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  onSubmit(userData){
+  onSubmit(){
     //Process data
     //console.warn(userData);
-    this.authenticateService.verifyUser(userData.email, userData.password);
+    const val = this.loginForm.value;
+    if(val.email && val.password){
+      this.authenticateService.verifyUser(val.email, val.password);
+    }
+    
+    
     this.loginForm.reset();
   }
 

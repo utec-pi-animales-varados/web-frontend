@@ -1,0 +1,7 @@
+{
+    "/animales_varados-0.1/*": {
+        "target": "http://107.180.91.147:8080/",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}
