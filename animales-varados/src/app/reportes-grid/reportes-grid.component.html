@@ -1,0 +1,26 @@
+<dx-data-grid id="gridContainer"
+    [dataSource]= jsonDataSource
+    [showBorders]="true">
+    <dxi-column
+        dataField="date"
+        dataType="datetime"
+    ></dxi-column>
+    <dxi-column
+        dataField="latitude"
+        dataType="number"
+    ></dxi-column>
+    <dxi-column
+        dataField="longitude"
+        dataType="number"
+    ></dxi-column>
+    <dxi-column
+        dataField="picturesURLs"
+        dataType="string"
+    ></dxi-column>
+    <dxi-column
+        dataField="usuario"
+        dataType="object"
+    ></dxi-column>
+    
+</dx-data-grid>
+

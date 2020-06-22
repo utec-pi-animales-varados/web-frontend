@@ -8,22 +8,31 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule }    from '@angular/common/http';
 import { ListadoReportesComponent } from './listado-reportes/listado-reportes.component';
 import { HomeComponent } from './home/home.component';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+import { DxDataGridModule } from 'devextreme-angular';
+import { ReportesGridComponent } from './reportes-grid/reportes-grid.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ListadoReportesComponent,
-    HomeComponent
+    HomeComponent,
+    ReportesGridComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DxDataGridModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+platformBrowserDynamic().bootstrapModule(AppModule);
