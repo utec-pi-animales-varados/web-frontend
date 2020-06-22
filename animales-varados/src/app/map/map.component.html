@@ -1,0 +1,26 @@
+<dx-map 
+    #map    
+    center="Lima, Perú" 
+    [zoom]="10" 
+    [height]="400" 
+    width="100%" 
+    provider="bing"
+    [key]="keys"
+    [type]="mapTypes[0].key"
+    [controls]="true" 
+    [markerIconSrc]="mapMarkerUrl" 
+    [markers]="markers">
+</dx-map>
+​
+<div class="options">
+    <div class="caption">Options</div>
+    <div class="option">
+        <span>Map Type</span>
+        <dx-select-box 
+            [dataSource]="mapTypes" 
+            displayExpr="name" 
+            valueExpr="key" 
+            [(value)]="map.type">
+        </dx-select-box>
+    </div>
+</div>

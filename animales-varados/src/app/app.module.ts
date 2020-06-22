@@ -12,6 +12,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { DxDataGridModule } from 'devextreme-angular';
 import { ReportesGridComponent } from './reportes-grid/reportes-grid.component';
+import { MapComponent } from './map/map.component';
+import { DxMapModule, DxSelectBoxModule } from 'devextreme-angular';
 
 
 @NgModule({
@@ -21,6 +23,7 @@ import { ReportesGridComponent } from './reportes-grid/reportes-grid.component';
     ListadoReportesComponent,
     HomeComponent,
     ReportesGridComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +32,8 @@ import { ReportesGridComponent } from './reportes-grid/reportes-grid.component';
     ReactiveFormsModule,
     HttpClientModule,
     DxDataGridModule,
+    DxMapModule,
+    DxSelectBoxModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
