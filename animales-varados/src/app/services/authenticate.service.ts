@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { UserInterface } from '../models/user-interface';
 import { Observable } from 'rxjs';
 import { map } from "rxjs/operators";
+import {Router} from "@angular/router";
+
 
 import * as moment from 'moment';
 
@@ -11,7 +13,8 @@ import * as moment from 'moment';
 })
 export class AuthenticateService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+              private router: Router) {}
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -25,6 +28,7 @@ export class AuthenticateService {
     return this.http.post<UserInterface>(url_api, {email: email, password: password}).subscribe(
       res => {
       this.setSession(res);
+      this.router.navigate(['/home']);
     },
       error => {
           // HANDLE ERROR //
