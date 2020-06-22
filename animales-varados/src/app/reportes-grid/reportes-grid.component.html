@@ -1,26 +1,15 @@
-<dx-data-grid id="gridContainer"
-    [dataSource]= jsonDataSource
-    [showBorders]="true">
-    <dxi-column
-        dataField="date"
-        dataType="datetime"
-    ></dxi-column>
-    <dxi-column
-        dataField="latitude"
-        dataType="number"
-    ></dxi-column>
-    <dxi-column
-        dataField="longitude"
-        dataType="number"
-    ></dxi-column>
-    <dxi-column
-        dataField="picturesURLs"
-        dataType="string"
-    ></dxi-column>
-    <dxi-column
-        dataField="usuario"
-        dataType="object"
-    ></dxi-column>
-    
-</dx-data-grid>
-
+<dx-tree-list
+    id="employees"
+    [dataSource]=jsonDataSource
+    itemsExpr="usuario"
+    dataStructure="tree"
+    [showRowLines]="true"
+    [showBorders]="true"
+    [columnAutoWidth]="true"
+    [expandedRowKeys]="[1]">
+    <dxi-column dataField="date" dataType="datetime" caption="Fecha y Hora"></dxi-column>
+    <dxi-column dataField="latitude"></dxi-column>
+    <dxi-column dataField="longitude"></dxi-column>
+    <dxi-column dataField="picturesURLs"></dxi-column>
+    <dxi-column dataField="comment"></dxi-column>
+</dx-tree-list>

@@ -10,7 +10,7 @@ import { ListadoReportesComponent } from './listado-reportes/listado-reportes.co
 import { HomeComponent } from './home/home.component';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { DxDataGridModule } from 'devextreme-angular';
+import { DxTreeListModule } from 'devextreme-angular';
 import { ReportesGridComponent } from './reportes-grid/reportes-grid.component';
 
 
@@ -28,7 +28,7 @@ import { ReportesGridComponent } from './reportes-grid/reportes-grid.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    DxDataGridModule,
+    DxTreeListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
