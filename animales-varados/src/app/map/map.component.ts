@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { DxMapModule, DxSelectBoxModule } from 'devextreme-angular';
 
-import { Marker, MapSetting, Service } from '../services/map.service';
+import { Marker, MapSetting, MapService } from '../services/map.service';
 
 if(!/localhost/.test(document.location.host)) {
   enableProdMode();
@@ -11,7 +11,7 @@ if(!/localhost/.test(document.location.host)) {
 
 @Component({
   selector: 'app-map',
-  providers: [ Service ],
+  providers: [ MapService ],
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
@@ -24,7 +24,7 @@ export class MapComponent implements OnInit {
   mapTypes: MapSetting[];
   keys = {};
  
-  constructor(service: Service) {
+  constructor(service: MapService) {
       this.mapTypes = service.getMapTypes();
       this.customMarkerUrl = this.mapMarkerUrl = service.getMarkerUrl();
       this.originalMarkers = this.markers = service.getMarkers();

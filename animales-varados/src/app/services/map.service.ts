@@ -44,7 +44,7 @@ let mapTypes: MapSetting[] = [{
 
 
 @Injectable()
-export class Service {
+export class MapService {
     getMapTypes(): MapSetting[] {
         return mapTypes;
     }
