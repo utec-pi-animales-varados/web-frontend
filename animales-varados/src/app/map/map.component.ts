@@ -4,6 +4,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { DxMapModule, DxSelectBoxModule } from 'devextreme-angular';
 
 import { Marker, MapSetting, MapService } from '../services/map.service';
+import { ReportesService } from '../services/reportes.service';
 
 if(!/localhost/.test(document.location.host)) {
   enableProdMode();
@@ -11,7 +12,7 @@ if(!/localhost/.test(document.location.host)) {
 
 @Component({
   selector: 'app-map',
-  providers: [ MapService ],
+  providers: [ MapService, ReportesService ],
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
@@ -20,14 +21,16 @@ export class MapComponent implements OnInit {
   mapMarkerUrl: string;
   originalMarkers: Marker[];
   markers: Marker[];
+  // public reporte;
+
 
   mapTypes: MapSetting[];
   keys = {};
  
-  constructor(service: MapService) {
+  constructor(service: MapService, private reportes: ReportesService) {
       this.mapTypes = service.getMapTypes();
       this.customMarkerUrl = this.mapMarkerUrl = service.getMarkerUrl();
-      this.originalMarkers = this.markers = service.getMarkers();
+      //this.originalMarkers = this.markers = service.getMarkers();
       //this.keys["google"] = "AIzaSyDMAQD660uPCxZsU6Mm80AzTfAyORXeWhg";
       //this.keys["googleStatic"] = "YOUR_GOOGLE_STATIC_MAPS_API_KEY";
   }
@@ -43,7 +46,14 @@ export class MapComponent implements OnInit {
       });
   }
 
+  private async loadReporte(){
+    // this.reporte = await this.reportes.getR();
+    // console.log(this.reporte);
+    this.originalMarkers = this.markers = await this.reportes.getMarkers();
+  }
+
   ngOnInit(): void {
+    // this.loadReporte();
   }
 
 }
