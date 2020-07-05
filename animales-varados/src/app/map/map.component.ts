@@ -21,16 +21,13 @@ export class MapComponent implements OnInit {
   mapMarkerUrl: string;
   originalMarkers: Marker[];
   markers: Marker[];
-  // public reporte;
-
-
   mapTypes: MapSetting[];
   keys = {};
  
   constructor(service: MapService, private reportes: ReportesService) {
       this.mapTypes = service.getMapTypes();
       this.customMarkerUrl = this.mapMarkerUrl = service.getMarkerUrl();
-      //this.originalMarkers = this.markers = service.getMarkers();
+      this.originalMarkers = this.markers = service.getMarkers();
       //this.keys["google"] = "AIzaSyDMAQD660uPCxZsU6Mm80AzTfAyORXeWhg";
       //this.keys["googleStatic"] = "YOUR_GOOGLE_STATIC_MAPS_API_KEY";
   }
@@ -46,14 +43,13 @@ export class MapComponent implements OnInit {
       });
   }
 
-  private async loadReporte(){
-    // this.reporte = await this.reportes.getR();
-    // console.log(this.reporte);
+  private async loadMarkers(){
+    console.log(await this.reportes.getMarkers());
     this.originalMarkers = this.markers = await this.reportes.getMarkers();
   }
 
   ngOnInit(): void {
-    // this.loadReporte();
+    this.loadMarkers();
   }
 
 }

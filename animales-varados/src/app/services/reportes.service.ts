@@ -11,6 +11,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 
+
 export class Tooltip {
   isShown: boolean;
   text: string;
@@ -25,8 +26,7 @@ export class ReportesService {
   
 private URL =  'http://107.180.91.147:8080/animales_varados-0.1/reportes';
 jsonDataSource: CustomStore;
-rawDATA = new Map();
-markers: Marker[] = [];
+rawDATA;
 
 constructor(private http: HttpClient) {
   const headerDict = {
@@ -67,7 +67,9 @@ getR(){
     .get(this.URL, requestOptions)
     .pipe(
       map((response: any) => {
+
           return response;
+          
       })
     
     )
@@ -78,20 +80,22 @@ getReportes() : CustomStore{
 }
 
 async getMarkers(){
-  
   const response = await this.getR();
+  let markers: Marker[] = [];
+
   response.forEach(function(value){
-    console.log(value.latitude);
     let a = new Marker();
     let b = new Tooltip();
     a.location = `${value.latitude}, ${value.longitude}`;
     b.isShown  = false;
-    b.text = value.id; 
+    b.text = `${value.animal.name} reportado por ${value.usuario.name} ${value.usuario.lastName}`; 
     a.tooltip = b;
-    this.markers.append(a);
+    markers.push(a);
   });
   
-  return this.markers;
+  //console.log(markers);
+
+  return markers;
 }
 
 ngOnInit(): void {

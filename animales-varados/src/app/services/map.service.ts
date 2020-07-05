@@ -12,19 +12,7 @@ export class Marker {
 
 let markerUrl = "https://js.devexpress.com/Demos/RealtorApp/images/map-marker.png";
 
-let markers: Marker[] = [{
-    location: "40.7825, -73.966111",
-    tooltip: {
-        isShown: false,
-        text: "Central Park"
-    }
-}, {
-    location: "General Ernesto Montagne 170, Miraflore, Lima, Peru",
-    tooltip: {
-        isShown: false,
-        text: "Brooklyn Bridge"
-    }
-}];
+let markers: Marker[] = [];
 
 export class MapSetting {
     key: string;
@@ -33,13 +21,13 @@ export class MapSetting {
 
 let mapTypes: MapSetting[] = [{
     key: "roadmap",
-    name: "Road Map"
+    name: "Tradicional"
 }, {
     key: "satellite",
-    name: "Satellite (Photographic) Map"
+    name: "Satelital"
 }, {
     key: "hybrid",
-    name: "Hybrid Map"
+    name: "Hibrido"
 }];
 
 

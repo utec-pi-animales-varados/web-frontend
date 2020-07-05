@@ -3,11 +3,14 @@
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-md-4 mx-auto">
         <div class="card_login">
+          <div *ngIf="authFail" class="alert alert-danger mb-2" role="alert">
+            Su correo electrónico o contraseña son incorrectos. <b> Intente nuevamente.</b>
+          </div>
           <div class="card">
             <div class="card-body text-center">
-              <form [formGroup]="loginForm" method="post" (ngSubmit)="onSubmit()">
+              <form ngNativeValidate [formGroup]="loginForm" method="post" (ngSubmit)="onSubmit()">
                 <div class="form-group">
-                  <input type="email" id="email" formControlName="email" name="email" class="form-control" placeholder="Email"  required>
+                  <input id="email" formControlName="email" name="email" class="form-control" placeholder="Email"  required>
                 </div>
                 <div class="form-group">
                   <input type="password" id="password" formControlName="password" name="password" class="form-control" placeholder="Password"
@@ -15,7 +18,7 @@
                 </div>
                 <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
                 <div class="form-group">
-                  <a routerLink="/user/register" class="form-control login-user">Soporte técnico ?</a>
+                  <a href="https://www.utec.edu.pe" class="form-control login-user">by UTEC</a>
                 </div>
               </form>
             </div>
