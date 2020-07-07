@@ -22,9 +22,9 @@ export class AuthenticateService {
   };
 
   private apiURL = 'http://107.180.91.147:8080/animales_varados-0.1';
-  estadoTemp = true;
+  estadoTemp = false;
 
-  verifyUser(email: string, password: string){
+  request(email: string, password: string){
     const url_api = `${this.apiURL}/authenticate`;
     console.log(url_api);
     this.http.post<UserInterface>(url_api, {email: email, password: password}).subscribe(
@@ -36,9 +36,15 @@ export class AuthenticateService {
           // HANDLE ERROR //
           //this.login.loginFail();
           this.estadoTemp = true;
-          if(error.status == "500") alert("Datos invalidos");
+          console.log("request" + this.estadoTemp);
         });
-    return this.estadoTemp;
+  }
+
+
+  verifyUser(email: string, password: string) {
+    this.request(email, password);
+    console.log("verifyUser" + this.estadoTemp);
+    return Promise.resolve(this.estadoTemp);
   }
 
   private setSession(authResult) {

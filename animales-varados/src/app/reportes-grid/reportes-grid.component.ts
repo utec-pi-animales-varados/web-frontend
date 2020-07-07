@@ -14,9 +14,12 @@ export class ReportesGridComponent implements OnInit {
   // private URL =  'http://107.180.91.147:8080/animales_varados-0.1/reportes';
   jsonDataSource: CustomStore;
 
+  
   constructor(service: ReportesService) {
     this.jsonDataSource = service.getReportes();
   }
+
+  
 
   ngOnInit(): void {
   }

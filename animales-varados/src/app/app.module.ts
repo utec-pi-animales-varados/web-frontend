@@ -13,7 +13,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { DxDataGridModule } from 'devextreme-angular';
 import { ReportesGridComponent } from './reportes-grid/reportes-grid.component';
 import { MapComponent } from './map/map.component';
-import { DxMapModule, DxSelectBoxModule } from 'devextreme-angular';
+import { DxMapModule, DxSelectBoxModule, DxCheckBoxModule, DxGalleryModule  } from 'devextreme-angular';
+import { ImagenComponent } from './imagen/imagen.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { DxMapModule, DxSelectBoxModule } from 'devextreme-angular';
     HomeComponent,
     ReportesGridComponent,
     MapComponent,
+    ImagenComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,8 @@ import { DxMapModule, DxSelectBoxModule } from 'devextreme-angular';
     DxDataGridModule,
     DxMapModule,
     DxSelectBoxModule,
+    DxCheckBoxModule,
+    DxGalleryModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,6 +6,17 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 
+let images: string[] = [
+  "https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/gallery/1.jpg",
+  "https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/gallery/2.jpg",
+  "https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/gallery/3.jpg",
+  "https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/gallery/4.jpg",
+  "https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/gallery/5.jpg",
+  "https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/gallery/6.jpg",
+  "https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/gallery/7.jpg",
+  "https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/gallery/8.jpg",
+  "https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/gallery/9.jpg"];
+
 
 @Injectable({
   providedIn: 'root'
@@ -86,9 +97,17 @@ async getMarkers(){
   response.forEach(function(value){
     let a = new Marker();
     let b = new Tooltip();
+    let reportadoPor;
     a.location = `${value.latitude}, ${value.longitude}`;
     b.isShown  = false;
-    b.text = `${value.animal.name} reportado por ${value.usuario.name} ${value.usuario.lastName}`; 
+
+    if(value.usuario.name ==null && value.usuario.name==null){
+      reportadoPor = " un invitado"
+    } else {
+      reportadoPor = `${value.usuario.name} ${value.usuario.lastName}`;
+    }
+
+    b.text = `${value.animal.name} reportado por ${reportadoPor}`; 
     a.tooltip = b;
     markers.push(a);
   });
@@ -96,6 +115,10 @@ async getMarkers(){
   //console.log(markers);
 
   return markers;
+}
+
+getImages() {
+  return images;
 }
 
 ngOnInit(): void {

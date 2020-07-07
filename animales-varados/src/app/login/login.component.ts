@@ -11,7 +11,7 @@ import { AuthenticateService } from '../services/authenticate.service';
 export class LoginComponent implements OnInit {
   loginForm;
   authenticated = false;
-  authFail = false;
+  authFail: Promise<boolean>;
 
   constructor(
     private authenticateService: AuthenticateService,
@@ -33,8 +33,7 @@ export class LoginComponent implements OnInit {
     const val = this.loginForm.value;
     if(val.email && val.password){
       this.authFail = this.authenticateService.verifyUser(val.email, val.password);
-    }
-    
+    }    
     this.loginForm.reset();
   }
 
