@@ -3,6 +3,7 @@
 </div>
 <dx-data-grid
     #grid
+    (onRowClick)="getImagesWithExtension(grid.instance.getSelectedRowsData()[0].picturesURLs)"
     id="gridContainer"
     [dataSource]= jsonDataSource
     [showBorders]="true"
@@ -30,11 +31,6 @@
         <dxi-column
             dataField="longitude"
             dataType="number"
-        ></dxi-column>
-        <dxi-column
-            dataField="picturesURLs"
-            dataType="string"
-            caption="Fotos"
         ></dxi-column>
     </dxi-column>
 
@@ -92,12 +88,16 @@
     <div class="widget-container">
         <dx-gallery #gallery
             id="gallery"
-            [dataSource]="['http://107.180.91.147/piAnimalesVarados/bucket/'+grid.instance.getSelectedRowsData()[0].picturesURLs]"
+            [dataSource]= "images"
             [height]="300"
-            [loop]="true"
+            [loop]="false"
             [showNavButtons]="true"
             [showIndicator]="true"
         ></dx-gallery>
     </div>
-    <!--<p class="employeeNotes">{{grid.instance.getSelectedRowsData()[0].animal.name}}</p>-->
+    <ul class="employeeNotes">
+        <li *ngFor="let i of (grid.instance.getSelectedRowsData()[0].respuestas)">
+        {{ i.pregunta.texto }}: <br> <b> {{i.textoRespuesta}} </b>
+        </li>
+    </ul>
 </div>
