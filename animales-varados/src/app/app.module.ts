@@ -15,6 +15,7 @@ import { ReportesGridComponent } from './reportes-grid/reportes-grid.component';
 import { MapComponent } from './map/map.component';
 import { DxMapModule, DxSelectBoxModule, DxCheckBoxModule, DxGalleryModule  } from 'devextreme-angular';
 import { ImagenComponent } from './imagen/imagen.component';
+import { ImageDirective } from './reportes-grid/image-array.directive';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { ImagenComponent } from './imagen/imagen.component';
     ReportesGridComponent,
     MapComponent,
     ImagenComponent,
+    ImageDirective
   ],
   imports: [
     BrowserModule,

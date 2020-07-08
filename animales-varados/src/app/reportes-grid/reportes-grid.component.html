@@ -89,10 +89,11 @@
 </dx-data-grid>
 
 <div id="employeeInfo" *ngIf="grid.selectedRowKeys.length">
+    <p [imageArray]="grid.instance.getSelectedRowsData()[0].picturesURLs"></p>
     <div class="widget-container">
         <dx-gallery #gallery
             id="gallery"
-            [dataSource]="['http://107.180.91.147/piAnimalesVarados/bucket/'+grid.instance.getSelectedRowsData()[0].picturesURLs]"
+            [dataSource]="readyArray"
             [height]="300"
             [loop]="true"
             [showNavButtons]="true"

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Directive, Input } from '@angular/core';
 import CustomStore from 'devextreme/data/custom_store';
 import { HttpClient, HttpParams, HttpRequest,HttpHeaders } from '@angular/common/http';
 import {  ReportesService } from '../services/reportes.service';
@@ -10,6 +10,7 @@ import {  ReportesService } from '../services/reportes.service';
   templateUrl: './reportes-grid.component.html',
   styleUrls: ['./reportes-grid.component.css']
 })
+
 export class ReportesGridComponent implements OnInit {
   // private URL =  'http://107.180.91.147:8080/animales_varados-0.1/reportes';
   jsonDataSource: CustomStore;
@@ -17,9 +18,10 @@ export class ReportesGridComponent implements OnInit {
   
   constructor(service: ReportesService) {
     this.jsonDataSource = service.getReportes();
+    
   }
 
-  
+
 
   ngOnInit(): void {
   }
