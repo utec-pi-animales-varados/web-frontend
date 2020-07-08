@@ -23,6 +23,8 @@ export class MapComponent implements OnInit {
   markers: Marker[];
   mapTypes: MapSetting[];
   keys = {};
+  coordinates: string = "Lima, Peru";
+  zoom = 10;
  
   constructor(service: MapService, private reportes: ReportesService) {
       this.mapTypes = service.getMapTypes();
@@ -41,6 +43,12 @@ export class MapComponent implements OnInit {
           newItem.tooltip.isShown = true;
           return newItem;
       });
+  }
+
+  public setCoordinates(lat: String, len: String){
+    this.coordinates = `${lat},${len}`;
+    this.zoom = 15;
+    console.log(this.coordinates);
   }
 
   private async loadMarkers(){

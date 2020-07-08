@@ -1,9 +1,11 @@
 <div class="long-title">
   <h3>Reporte de Animales Varados</h3>
 </div>
+<app-map #map>Loading...</app-map>
 <dx-data-grid
     #grid
-    (onRowClick)="getImagesWithExtension(grid.instance.getSelectedRowsData()[0].picturesURLs)"
+    (onRowClick)="callData(grid.instance.getSelectedRowsData()[0].picturesURLs)"
+    (onRowClick)="map.setCoordinates(grid.instance.getSelectedRowsData()[0].latitude, grid.instance.getSelectedRowsData()[0].longitude)"
     id="gridContainer"
     [dataSource]= jsonDataSource
     [showBorders]="true"
@@ -101,3 +103,4 @@
         </li>
     </ul>
 </div>
+

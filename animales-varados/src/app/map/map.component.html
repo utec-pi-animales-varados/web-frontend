@@ -1,7 +1,7 @@
 <dx-map 
     #map    
-    center="Lima, Perú" 
-    [zoom]="10" 
+    [center]="coordinates" 
+    [zoom]="zoom" 
     [height]="400" 
     width="100%" 
     provider="bing"
@@ -9,7 +9,8 @@
     [type]="mapTypes[0].key"
     [controls]="true" 
     [markerIconSrc]="mapMarkerUrl" 
-    [markers]="markers">
+    [markers]="markers"
+    [autoAdjust]="false">
 </dx-map>
 ​
 <div class="options">
