@@ -11,7 +11,9 @@ import { AuthenticateService } from '../services/authenticate.service';
 export class LoginComponent implements OnInit {
   loginForm;
   authenticated = false;
-  authFail: Promise<boolean>;
+  authFail: boolean;
+  mostrarMensaje: boolean;
+  mostrarMensajeSuccess: boolean;
 
   constructor(
     private authenticateService: AuthenticateService,
@@ -25,17 +27,38 @@ export class LoginComponent implements OnInit {
     }
 
   ngOnInit(): void {
-  }
-  
-  onSubmit(){
-    //Process data
-    //console.warn(userData);
-    const val = this.loginForm.value;
-    if(val.email && val.password){
-      this.authFail = this.authenticateService.verifyUser(val.email, val.password);
-    }    
-    this.loginForm.reset();
+    this.authFail = true;
+    this.mostrarMensaje = false;
+    this.mostrarMensajeSuccess = false;
   }
 
+  async request(){
+    const val = this.loginForm.value;
+    if(val.email && val.password){
+      console.log("ANTES")
+      // await this.authenticateService.verifyUser(val.email, val.password).then(res => {
+      //   if(res.valueOf){
+      //     console.log("TRUE RES EXPERIMENTO MAOR");
+      //   }else{
+      //     console.log("FALSE RES EXPERIMENTO MAOR");
+      //   }
+      // });
+      this.authFail = await this.authenticateService.verifyUser(val.email, val.password);
+      
+      console.log("DESPUES",this.authFail);
+    }
+  }
+  
+  async onSubmit(){
+    await this.request();
+    if(this.authFail){
+      console.log("A")
+      this.mostrarMensaje = true;
+    } else {
+      console.log("B")
+      this.mostrarMensajeSuccess = true;
+    }
+    this.loginForm.reset();
+  }
 
 }

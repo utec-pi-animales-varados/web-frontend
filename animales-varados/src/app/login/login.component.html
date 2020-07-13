@@ -5,8 +5,11 @@
         <div class="card_login">
           <img src="assets/img/logo.svg" class="mx-auto d-block mb-4">
 
-          <div *ngIf="authFail" class="alert alert-danger mb-2" role="alert">
+          <div *ngIf="mostrarMensaje" class="alert alert-danger mb-2" role="alert">
             Su correo electrónico o contraseña son incorrectos. <b> Intente nuevamente.</b>
+          </div>
+          <div *ngIf="mostrarMensajeSuccess" class="alert alert-success mb-2" role="alert">
+            Ingreso correcto <b> Bienvenido.</b>
           </div>
           <div class="card">
             <div class="card-body text-center">

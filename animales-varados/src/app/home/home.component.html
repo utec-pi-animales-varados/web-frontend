@@ -1,22 +1,12 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-3">
-  <a class="navbar-brand">Animales Varados</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav mr-auto">
-      <a id="reportes" [className]="gridVisible ? 'nav-item nav-link active' : 'nav-item nav-link'" style="cursor: pointer" (click)="clickReportes()">Reportes</a>
-      <a id="mapa" [className]="mapVisible ? 'nav-item nav-link active' : 'nav-item nav-link'" class="nav-item nav-link" style="cursor: pointer" (click)="clickMapa()">Mapa</a>
-    </div>
-    <button class="btn btn-dark my-2 my-sm-0 " style="cursor: pointer" (click)="logout()">Logout</button>
-  </div>
-</nav>
+<app-reportes-grid>Loading...</app-reportes-grid>
 
-<div class="dx-viewport">
-    <div *ngIf="gridVisible" class="demo-container">
-        <app-reportes-grid>Loading...</app-reportes-grid>
-    </div>
-    <div *ngIf="mapVisible" class="demo-container">
-        <!--<app-map #map>Loading...</app-map>-->
-    </div>
-</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://www.utec.edu.pe/">UTEC</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
