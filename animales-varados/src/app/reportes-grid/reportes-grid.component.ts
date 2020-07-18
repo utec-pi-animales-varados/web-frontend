@@ -6,12 +6,14 @@ import {  ReportesService } from '../services/reportes.service';
 import { DxDataGridModule } from 'devextreme-angular';
 import { MapComponent }  from '../map/map.component';
 import { map } from 'rxjs/operators';
+import {NgbAccordionConfig} from '@ng-bootstrap/ng-bootstrap';
+
 
 const URL:String =  "http://107.180.91.147/piAnimalesVarados/bucket/";
 
 @Component({
   selector: 'app-reportes-grid',
-  providers: [ ReportesService, MapComponent, AuthenticateService ],
+  providers: [ ReportesService, MapComponent, AuthenticateService, NgbAccordionConfig ],
   templateUrl: './reportes-grid.component.html',
   styleUrls: ['./reportes-grid.component.css'],
 })
@@ -24,8 +26,9 @@ export class ReportesGridComponent implements OnInit {
   images: String[] = [];
   @ViewChild(MapComponent) map: MapComponent;
   
-  constructor(service: ReportesService, private auth : AuthenticateService) {
+  constructor(service: ReportesService, private auth : AuthenticateService, config: NgbAccordionConfig) {
     this.jsonDataSource = service.getReportes();
+    config.closeOthers = true;
   }
 
 

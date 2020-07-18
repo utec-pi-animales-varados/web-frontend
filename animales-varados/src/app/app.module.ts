@@ -13,6 +13,7 @@ import { DxDataGridModule } from 'devextreme-angular';
 import { ReportesGridComponent } from './reportes-grid/reportes-grid.component';
 import { MapComponent } from './map/map.component';
 import { DxMapModule, DxSelectBoxModule, DxCheckBoxModule, DxGalleryModule  } from 'devextreme-angular';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { DxMapModule, DxSelectBoxModule, DxCheckBoxModule, DxGalleryModule  } fr
     DxSelectBoxModule,
     DxCheckBoxModule,
     DxGalleryModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

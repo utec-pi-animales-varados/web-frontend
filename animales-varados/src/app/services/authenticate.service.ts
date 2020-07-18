@@ -31,7 +31,7 @@ export class AuthenticateService {
       map((response: any) => {
         this.setSession(response);
         this.router.navigate(['/home']);
-        console.log("POR LA PTM")
+        console.log("REQUEST")
         return false;
     })
 

@@ -13,7 +13,6 @@
 </nav>
 
 
-
 <div class="dx-viewport">
     <div *ngIf="gridVisible" class="demo-container">
         <div class="long-title">
@@ -28,7 +27,9 @@
             [showBorders]="true"
             keyExpr="id"
             [hoverStateEnabled]="true"
-            [selectedRowKeys]="[]">
+            [selectedRowKeys]="[]"
+            noDataText = "Usted no se encuentra autorizado. Por favor, iniciar sesión.">
+            
             <dxo-selection mode="single"></dxo-selection>
 
             <dxo-filter-panel [visible]="true"></dxo-filter-panel>
@@ -106,15 +107,26 @@
                                 [loop]="false"
                                 [showNavButtons]="true"
                                 [showIndicator]="true"
+                                noDataText = "El reporte seleccionado no cuenta con imágenes."
                             ></dx-gallery>
                         </div>
                     </div>
                     <div class="col-sm mt-5">
-                        <ul class="employeeNotes">
-                            <li *ngFor="let i of (grid.instance.getSelectedRowsData()[0].respuestas)">
-                            {{ i.pregunta.texto }}: <br> <b> {{i.textoRespuesta}} </b>
-                            </li>
-                        </ul>
+                        <ngb-accordion #acc="ngbAccordion" activeIds="static-1">
+                            <ngb-panel *ngFor="let i of (grid.instance.getSelectedRowsData()[0].respuestas)" id="{{i.id}}" title={{i.pregunta.texto}}>
+                                <ng-template ngbPanelHeader>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <h6 class="m-0">{{i.pregunta.texto}}</h6>
+                                        <div>
+                                        <button ngbPanelToggle class="btn btn-sm btn-outline-primary ml-2"><i class="fa fa-plus"></i></button>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                                <ng-template ngbPanelContent>
+                                {{i.textoRespuesta}}
+                                </ng-template>
+                            </ngb-panel>
+                        </ngb-accordion>
                     </div>
                 </div>
             </div>
@@ -123,7 +135,7 @@
     
     
     
-    <div *ngIf="mapVisible" class="demo-container">
+    <div class="mt-5" *ngIf="mapVisible" class="demo-container">
         <app-map #map>Loading...</app-map>
     </div>
 </div>
