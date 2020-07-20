@@ -1,0 +1,27 @@
+<dx-map 
+    #map    
+    [center]="coordinates" 
+    [zoom]="zoom" 
+    [height]="400" 
+    width="100%" 
+    provider="bing"
+    [key]="keys"
+    [type]="mapTypes[0].key"
+    [controls]="true" 
+    [markerIconSrc]="mapMarkerUrl" 
+    [markers]="markers"
+    [autoAdjust]="false">
+</dx-map>
+​
+<div class="options">
+    <div class="caption">Opciones</div>
+    <div class="option">
+        <span>Tipo de Mapa </span>
+        <dx-select-box 
+            [dataSource]="mapTypes" 
+            displayExpr="name" 
+            valueExpr="key" 
+            [(value)]="map.type">
+        </dx-select-box>
+    </div>
+</div>

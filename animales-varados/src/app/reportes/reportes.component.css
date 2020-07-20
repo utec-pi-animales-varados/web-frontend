@@ -1,0 +1,12 @@
+::ng-deep .widget-container {
+    margin-right: 0px;
+}
+::ng-deep #gallery {
+    margin: auto;
+    max-width: 450px;
+}
+
+::ng-deep .caption {
+    font-size: 18px;
+    font-weight: 500;
+}

@@ -1,0 +1,142 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-3">
+  <a class="navbar-brand">Animales Varados</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav mr-auto">
+      <a id="reportes" [className]="gridVisible ? 'nav-item nav-link active' : 'nav-item nav-link'" style="cursor: pointer" (click)="clickReportes()">Reportes</a>
+      <a id="mapa" [className]="mapVisible ? 'nav-item nav-link active' : 'nav-item nav-link'" class="nav-item nav-link" style="cursor: pointer" (click)="clickMapa()">Mapa</a>
+    </div>
+    <button class="btn btn-light my-2 my-sm-0 " style="cursor: pointer" (click)="logout()">Salir <i class="fa fa-sign-out" aria-hidden="true"></i>
+</button>
+  </div>
+</nav>
+
+
+<div class="dx-viewport">
+    <div *ngIf="gridVisible" class="demo-container">
+        <div class="long-title">
+            <h3>Reporte de Animales Varados</h3>
+        </div>
+        <dx-data-grid
+            #grid
+            (onRowClick)="callData(grid.instance.getSelectedRowsData()[0].picturesURLs)"
+            (onRowClick)="map.setCoordinates(grid.instance.getSelectedRowsData()[0].latitude, grid.instance.getSelectedRowsData()[0].longitude)"
+            id="gridContainer"
+            [dataSource]= jsonDataSource
+            [showBorders]="true"
+            keyExpr="id"
+            [hoverStateEnabled]="true"
+            [selectedRowKeys]="[]"
+            noDataText = "Usted no se encuentra autorizado. Por favor, iniciar sesión.">
+            
+            <dxo-paging [pageSize]="10"></dxo-paging>
+            
+            <dxo-selection mode="single"></dxo-selection>
+
+            <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+
+            <dxo-group-panel [visible]="true"></dxo-group-panel>
+            <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
+            
+            <dxi-column caption="Datos del Reporte">
+                <dxi-column
+                    dataField="date"
+                    dataType="datetime"
+                    caption="Fecha y Hora"
+                ></dxi-column>
+            </dxi-column>
+
+            <dxi-column caption="Usuario">
+                <dxi-column
+                    dataField="usuario.name"
+                    dataType="string"
+                    caption="Nombre"
+                ></dxi-column>
+                <dxi-column
+                    dataField="usuario.lastName"
+                    dataType="string"
+                    caption="Apellido"
+                ></dxi-column>
+                <dxi-column
+                    dataField="usuario.email"
+                    dataType="string"
+                    caption="Correo"
+                ></dxi-column>
+                <dxi-column
+                    dataField="usuario.telephone"
+                    dataType="string"
+                    caption="Teléfono"
+                ></dxi-column>
+                <dxi-column
+                    dataField="usuario.mobilePhone"
+                    dataType="string"
+                    caption="Celular"
+                ></dxi-column>
+            </dxi-column>
+
+            <dxi-column caption="Animal">
+                <dxi-column
+                    dataField="animal.name"
+                    dataType="string"
+                    caption="Nombre"
+                ></dxi-column>
+                <dxi-column
+                    dataField="animal.color"
+                    dataType="string"
+                    caption="Color"
+                ></dxi-column>
+                <dxi-column
+                    dataField="longitudAnimal"
+                    dataType="number"
+                    caption="Longitud"
+                ></dxi-column>
+            </dxi-column>
+
+            <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
+        </dx-data-grid>
+
+        <div id="employeeInfo" *ngIf="grid.selectedRowKeys.length">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm mt-2 mb-2">
+                        <div class="widget-container">
+                            <dx-gallery #gallery
+                                id="gallery"
+                                [dataSource]= "images"
+                                [height]="300"
+                                [loop]="true"
+                                [showNavButtons]="true"
+                                [showIndicator]="true"
+                                noDataText = "El reporte seleccionado no cuenta con imágenes."
+                            ></dx-gallery>
+                        </div>
+                    </div>
+                    <div class="col-sm mt-5">
+                        <ngb-accordion #acc="ngbAccordion" activeIds="static-1">
+                            <ngb-panel *ngFor="let i of (grid.instance.getSelectedRowsData()[0].respuestas)" id="{{i.id}}" title={{i.pregunta.texto}}>
+                                <ng-template ngbPanelHeader>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <h6 class="m-0">{{i.pregunta.texto}}</h6>
+                                        <div>
+                                        <button ngbPanelToggle class="btn btn-sm btn-outline-primary ml-2"><i class="fa fa-plus"></i></button>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                                <ng-template ngbPanelContent>
+                                {{i.textoRespuesta}}
+                                </ng-template>
+                            </ngb-panel>
+                        </ngb-accordion>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <div class="mt-5" *ngIf="mapVisible" class="demo-container">
+        <app-map #map>Loading...</app-map>
+    </div>
+</div>
