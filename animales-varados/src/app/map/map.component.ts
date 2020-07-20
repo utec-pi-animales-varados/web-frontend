@@ -1,7 +1,4 @@
-import { NgModule, Component, enableProdMode,OnInit } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { DxMapModule, DxSelectBoxModule } from 'devextreme-angular';
+import { Component, enableProdMode,OnInit } from '@angular/core';
 
 import { Marker, MapSetting, MapService } from '../services/map.service';
 import { ReportesService } from '../services/reportes.service';
@@ -30,8 +27,6 @@ export class MapComponent implements OnInit {
       this.mapTypes = service.getMapTypes();
       this.customMarkerUrl = this.mapMarkerUrl = service.getMarkerUrl();
       this.originalMarkers = this.markers = service.getMarkers();
-      //this.keys["google"] = "AIzaSyDMAQD660uPCxZsU6Mm80AzTfAyORXeWhg";
-      //this.keys["googleStatic"] = "YOUR_GOOGLE_STATIC_MAPS_API_KEY";
   }
   checkCustomMarker(data) {
       this.mapMarkerUrl = data.value ? this.customMarkerUrl : null;

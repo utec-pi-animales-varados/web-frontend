@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
     this.mostrarMensajeError = false;
     const val = this.loginForm.value;
     if(val.email && val.password){
-      console.log("ANTES")
       this.authenticateService.login(val.email, val.password)
             .pipe(first())
             .subscribe(
@@ -53,7 +52,7 @@ export class LoginComponent implements OnInit {
                     this.mostrarMensajeSuccess = true;
                     setTimeout(() => 
                     {
-                        this.router.navigate(['/home']);
+                        this.router.navigate(['']);
                     },
                     1000);
                 },

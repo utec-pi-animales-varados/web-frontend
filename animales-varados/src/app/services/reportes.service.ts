@@ -1,22 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import CustomStore from 'devextreme/data/custom_store';
-import { UserInterface } from '../models/user-interface';
-import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-
-let images: string[] = [
-  "https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/gallery/1.jpg",
-  "https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/gallery/2.jpg",
-  "https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/gallery/3.jpg",
-  "https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/gallery/4.jpg",
-  "https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/gallery/5.jpg",
-  "https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/gallery/6.jpg",
-  "https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/gallery/7.jpg",
-  "https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/gallery/8.jpg",
-  "https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/gallery/9.jpg"];
-
 
 @Injectable({
   providedIn: 'root'
@@ -56,10 +41,9 @@ constructor(private http: HttpClient) {
           return this.http.get(this.URL, requestOptions)
               .toPromise()
               .then(result => {
-                  // You can process the response here
                   return result;
               })
-              .catch(() => { throw 'Data loading error' });
+              .catch(() => { throw 'Error al cargar la Data.' });
       }
   });
 }
@@ -115,10 +99,6 @@ async getMarkers(){
   //console.log(markers);
 
   return markers;
-}
-
-getImages() {
-  return images;
 }
 
 ngOnInit(): void {

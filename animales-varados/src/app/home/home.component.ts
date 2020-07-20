@@ -8,16 +8,8 @@ import { AuthenticateService } from '../services/authenticate.service';
   providers: [ AuthenticateService ]
 })
 export class HomeComponent implements OnInit {
-
-  gridVisible = true;
-  mapVisible = true;
-
-  constructor() { }
-
-
+  constructor() {}
 
   ngOnInit(): void {
   }
-
-
 }

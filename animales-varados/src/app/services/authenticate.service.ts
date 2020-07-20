@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
-import { UserInterface } from '../models/user-interface';
-import { Observable } from 'rxjs';
-import { map, catchError, delay } from "rxjs/operators";
+import { map } from "rxjs/operators";
 import {Router} from "@angular/router";
-import { LoginComponent } from "../login/login.component"
-
-import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'

@@ -10,7 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { DxDataGridModule } from 'devextreme-angular';
-import { ReportesGridComponent } from './reportes-grid/reportes-grid.component';
+import { ReportesComponent } from './reportes/reportes.component';
 import { MapComponent } from './map/map.component';
 import { DxMapModule, DxSelectBoxModule, DxCheckBoxModule, DxGalleryModule  } from 'devextreme-angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -21,7 +21,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    ReportesGridComponent,
+    ReportesComponent,
     MapComponent,
   ],
   imports: [

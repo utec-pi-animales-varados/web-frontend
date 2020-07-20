@@ -9,13 +9,13 @@ import {NgbAccordionConfig} from '@ng-bootstrap/ng-bootstrap';
 const URL:String =  "http://107.180.91.147/piAnimalesVarados/bucket/";
 
 @Component({
-  selector: 'app-reportes-grid',
+  selector: 'app-reportes',
   providers: [ ReportesService, MapComponent, AuthenticateService, NgbAccordionConfig ],
-  templateUrl: './reportes-grid.component.html',
-  styleUrls: ['./reportes-grid.component.css'],
+  templateUrl: './reportes.component.html',
+  styleUrls: ['./reportes.component.css'],
 })
 
-export class ReportesGridComponent implements OnInit {
+export class ReportesComponent implements OnInit {
   jsonDataSource: CustomStore;
   gridVisible = true;
   mapVisible = true;
