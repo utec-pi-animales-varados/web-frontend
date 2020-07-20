@@ -1,11 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import CustomStore from 'devextreme/data/custom_store';
 import { AuthenticateService } from '../services/authenticate.service';
-import { HttpClient, HttpParams, HttpRequest,HttpHeaders } from '@angular/common/http';
 import {  ReportesService } from '../services/reportes.service';
-import { DxDataGridModule } from 'devextreme-angular';
 import { MapComponent }  from '../map/map.component';
-import { map } from 'rxjs/operators';
 import {NgbAccordionConfig} from '@ng-bootstrap/ng-bootstrap';
 
 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthenticateService } from '../services/authenticate.service';
+import { first } from 'rxjs/operators';
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -17,7 +19,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authenticateService: AuthenticateService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
     ) {
       this.loginForm = this.formBuilder.group({
         email: ['',Validators.required],
@@ -36,28 +39,31 @@ export class LoginComponent implements OnInit {
     const val = this.loginForm.value;
     if(val.email && val.password){
       console.log("ANTES")
-      // await this.authenticateService.verifyUser(val.email, val.password).then(res => {
-      //   if(res.valueOf){
-      //     console.log("TRUE RES EXPERIMENTO MAOR");
-      //   }else{
-      //     console.log("FALSE RES EXPERIMENTO MAOR");
-      //   }
-      // });
-      this.authFail = await this.authenticateService.verifyUser(val.email, val.password);
-      
-      console.log("DESPUES",this.authFail);
+      this.authenticateService.login(val.email, val.password)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    this.router.navigate(['/home']);
+                },
+                error => {
+                    console.log("ERROR")
+                });
     }
   }
   
-  async onSubmit(){
-    await this.request();
-    if(this.authFail){
-      console.log("A")
-      this.mostrarMensaje = true;
-    } else {
-      console.log("B")
-      this.mostrarMensajeSuccess = true;
-    }
+  onSubmit(){
+    this.request().then( response => {
+      // this.authFail = response;
+      console.log(response)
+      if(this.authFail){
+        console.log("A")
+        this.mostrarMensaje = true;
+      } else {
+        console.log("B")
+        this.mostrarMensajeSuccess = true;
+      }
+    });
+    
     this.loginForm.reset();
   }
 

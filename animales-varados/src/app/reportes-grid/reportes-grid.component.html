@@ -30,6 +30,8 @@
             [selectedRowKeys]="[]"
             noDataText = "Usted no se encuentra autorizado. Por favor, iniciar sesión.">
             
+            <dxo-paging [pageSize]="10"></dxo-paging>
+            
             <dxo-selection mode="single"></dxo-selection>
 
             <dxo-filter-panel [visible]="true"></dxo-filter-panel>
@@ -104,7 +106,7 @@
                                 id="gallery"
                                 [dataSource]= "images"
                                 [height]="300"
-                                [loop]="false"
+                                [loop]="true"
                                 [showNavButtons]="true"
                                 [showIndicator]="true"
                                 noDataText = "El reporte seleccionado no cuenta con imágenes."
