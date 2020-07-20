@@ -13,9 +13,10 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
   loginForm;
   authenticated = false;
-  authFail: boolean;
-  mostrarMensaje: boolean;
+  mostrarMensajeError: boolean;
   mostrarMensajeSuccess: boolean;
+  mostrarSpinner: boolean;
+  mostrarLoginText: boolean;
 
   constructor(
     private authenticateService: AuthenticateService,
@@ -30,12 +31,17 @@ export class LoginComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.authFail = true;
-    this.mostrarMensaje = false;
+    this.mostrarMensajeError = false;
     this.mostrarMensajeSuccess = false;
+    this.mostrarSpinner = false;
+    this.mostrarLoginText = true;
   }
 
-  async request(){
+  
+  onSubmit(){
+    this.mostrarSpinner = true;
+    this.mostrarLoginText = false;
+    this.mostrarMensajeError = false;
     const val = this.loginForm.value;
     if(val.email && val.password){
       console.log("ANTES")
@@ -43,27 +49,21 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    this.router.navigate(['/home']);
+                    this.mostrarMensajeError = false;
+                    this.mostrarMensajeSuccess = true;
+                    setTimeout(() => 
+                    {
+                        this.router.navigate(['/home']);
+                    },
+                    1000);
                 },
                 error => {
-                    console.log("ERROR")
+                    this.mostrarMensajeSuccess = false;
+                    this.mostrarMensajeError = true;
+                    this.mostrarSpinner = false;
+                    this.mostrarLoginText = true;
                 });
     }
-  }
-  
-  onSubmit(){
-    this.request().then( response => {
-      // this.authFail = response;
-      console.log(response)
-      if(this.authFail){
-        console.log("A")
-        this.mostrarMensaje = true;
-      } else {
-        console.log("B")
-        this.mostrarMensajeSuccess = true;
-      }
-    });
-    
     this.loginForm.reset();
   }
 

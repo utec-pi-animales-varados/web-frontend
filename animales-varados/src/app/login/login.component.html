@@ -5,7 +5,7 @@
         <div class="card_login">
           <img src="assets/img/logo.svg" class="mx-auto d-block mb-4">
 
-          <div *ngIf="mostrarMensaje" class="alert alert-danger mb-2" role="alert">
+          <div *ngIf="mostrarMensajeError" class="alert alert-danger mb-2" role="alert">
             Su correo electrónico o contraseña son incorrectos. <b> Intente nuevamente.</b>
           </div>
           <div *ngIf="mostrarMensajeSuccess" class="alert alert-success mb-2" role="alert">
@@ -21,7 +21,8 @@
                   <input type="password" id="password" formControlName="password" name="password" class="form-control" placeholder="Password"
                     required>
                 </div>
-                <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
+                <button type="submit" class="btn btn-lg btn-primary btn-block"><div *ngIf="mostrarSpinner" class="spinner-border" style="width: 1.5rem; height: 1.5rem;" role="status"></div><div *ngIf="mostrarLoginText">Login</div></button>
+                
                 <div class="form-group mt-3">
                   <a href="https://www.utec.edu.pe" class="form-control login-user">by UTEC</a>
                 </div>
